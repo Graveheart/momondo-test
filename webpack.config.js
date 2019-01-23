@@ -1,8 +1,9 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WriteFileWebpackPlugin = require('write-file-webpack-plugin');
 
 module.exports = {
-  entry: "./src/index.tsx",
+  entry: "./src/js/index.tsx",
   output: {
     filename: "bundle.js",
     path: __dirname + "/dist"
@@ -45,5 +46,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html'
     }),
+    new WriteFileWebpackPlugin()
   ]
 };

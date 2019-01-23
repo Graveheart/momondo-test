@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { flightsReducer, FlightsState } from './flight-search/reducer';
+import { flightsReducer, FlightsState } from './flight-ticket/reducer';
 
 export type RootState = {
   flightSearch: FlightsState;

@@ -6,7 +6,7 @@ interface Endpoints {
 }
 
 const ENDPOINTS: Endpoints = {
-  'flightSearch': '/flight-search/1.2/'
+  'flightSearch': '/flight-ticket/1.2/'
 };
 
 export const getApiUrl = (endpoint: string, uuid: string) => {

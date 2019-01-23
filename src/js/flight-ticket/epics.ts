@@ -7,22 +7,29 @@ import { ActionType, isActionOf } from 'typesafe-actions';
 import * as actions from '../actions';
 import { getApiUrl } from '../endpoints';
 import { FlightsState } from './reducer';
+import { RootState } from '../reducer';
 
 type Action = ActionType<typeof actions>;
 
-const getFlightEpic: any = (action$: ActionsObservable<Action>) => action$.pipe(
+const getNextFlightsEpic: Epic<Action, Action, RootState> = (action$, state$) => action$.pipe(
+  filter(isActionOf(actions.setFlights)),
+  filter(action => !action.payload.Done),
+  map(() => actions.getFlights(state$.value.flightSearch.uuid))
+);
+
+const getFlightsEpic: Epic<Action, Action, RootState> = (action$) => action$.pipe(
   filter(isActionOf(actions.getFlights)),
   concatMap(
     action =>
-    ajax({ url: getApiUrl('flightSearch', action.payload.uuid)}).pipe(
+    ajax({ url: getApiUrl('flightSearch', action.payload)}).pipe(
       map(response => actions.setFlights(response.response)),
       retry(2),
-      catchError(error => of(actions.flightsErrored(error))),
-      takeUntil(action$.ofType(actions.FLIGHTS_CANCEL))
+      catchError(error => of(actions.flightsErrored(error)))
     )
   )
 );
 
 export default [
-  getFlightEpic
+  getFlightsEpic,
+  getNextFlightsEpic
 ];

@@ -5,7 +5,6 @@ export default class Offer {
   public Deeplink: string;
   // Index to the flights array
   public FlightIndex: number;
-  public Flights?: Array<Flight>;
   // The supplier which made this offer
   public Supplier: string;
   // The price

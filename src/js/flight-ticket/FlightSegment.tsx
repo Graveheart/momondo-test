@@ -1,13 +1,13 @@
 import * as React from "react";
 import Segment from "../models/Segment";
-import Leg from './../models/Leg';
+import Leg from '../models/Leg';
 import * as moment from 'moment';
 
-export interface TicketSegmentProps extends Segment {
+export interface FlightSegmentProps extends Segment {
   legsData?: Array<Leg>;
 }
 
-const TicketSegment: React.SFC<TicketSegmentProps> = ({Duration, legsData}) => {
+const FlightSegment: React.SFC<FlightSegmentProps> = ({Duration, legsData}) => {
 
   const formatDuration = (duration: number) => {
     const hours = Math.floor(duration / 60).toString().padStart(2, '0');
@@ -56,4 +56,4 @@ const TicketSegment: React.SFC<TicketSegmentProps> = ({Duration, legsData}) => {
   );
 }
 
-export default TicketSegment;
+export default FlightSegment;

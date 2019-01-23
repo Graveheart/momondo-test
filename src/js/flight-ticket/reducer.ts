@@ -13,31 +13,33 @@ export interface FlightsState {
   readonly segments: Array<Segment>;
   readonly legs: Array<Leg>;
   readonly offers: Array<Offer>;
-  readonly isLoading: boolean;
+  readonly done: boolean;
   readonly error?: Error;
+  readonly uuid?: string;
 }
 
 const initialState: FlightsState = {
-  isLoading: false,
+  done: false,
   flights: [],
   segments: [],
   legs: [],
-  offers: []
+  offers: [],
 }
 
 export function flightsReducer(state: FlightsState = initialState, action: Action): FlightsState {
   switch (action.type) {
     case getType(actions.getFlights):
-      return {...state, isLoading: true}
+      return {...state, uuid: action.payload };
     case getType(actions.setFlights):
       const legs = [...state.legs, ...action.payload.Legs];
       const flights = [...state.flights, ...action.payload.Flights];
       const segments = [...state.segments, ...action.payload.Segments];
       const offers = [...state.offers, ...action.payload.Offers];
+      const done = action.payload.Done;
 
-      return {...state, isLoading: false, legs, flights, segments, offers};
+      return {...state, done, legs, flights, segments, offers};
     case getType(actions.flightsErrored):
-      return {...state, isLoading: false, error: action.payload}
+      return {...state, done: true, error: action.payload}
     default:
       return state;
   }

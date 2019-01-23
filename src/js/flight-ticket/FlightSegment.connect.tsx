@@ -7,10 +7,10 @@ import { RootState } from "../reducer";
 
 type Action = ActionType<typeof actions>;
 
-import TicketSegment, {TicketSegmentProps} from "./TicketSegment";
+import FlightSegment, {FlightSegmentProps} from "./FlightSegment";
 import Leg from './../models/Leg';
 
-const mapStateToProps = (state: RootState, props: TicketSegmentProps) => {
+const mapStateToProps = (state: RootState, props: FlightSegmentProps) => {
   const legs = state.flightSearch.legs;
 
   const legsData: Array<Leg> = [];
@@ -23,4 +23,4 @@ const mapStateToProps = (state: RootState, props: TicketSegmentProps) => {
   };
 }
 
-export default connect(mapStateToProps)(TicketSegment);
+export default connect(mapStateToProps)(FlightSegment);

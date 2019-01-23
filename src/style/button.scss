@@ -1,0 +1,742 @@
+.c-button {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  justify-content: center;
+  position: relative;
+  vertical-align: middle;
+  padding: 8px 12px;
+  border-radius: 4px;
+  outline: 0;
+  transition-duration: .25s;
+  transition-timing-function: cubic-bezier(0.27, 0.67, 0.28, 0.87);
+  user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  &:hover, &[focused] {
+    transition-duration: 0s;
+  }
+
+  &[focused] &__outline {
+    box-shadow: inset 0 0 0 2px currentColor;
+  }
+
+  &[keyboard] {
+    transition-duration: 0.25s;
+  }
+  &[pressed] {
+    transition-duration: 0s;
+  }
+  &:not([type=flat]):not([type=link]) {
+    &[size=small] {
+      font-size: .875rem;
+      line-height: 1.25rem;
+      letter-spacing: 0.01875rem;
+    }
+    &[compact] {
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+  }
+  &[type=flat] {
+    text-transform: uppercase;
+    &[size=small] {
+      font-size: .75rem;
+      line-height: 1rem;
+      letter-spacing: 0.01875rem;
+    }
+  }
+  &[type=link] {
+    padding: 0;
+    &[size=small] {
+      font-size: .75rem;
+      line-height: 1rem;
+      letter-spacing: 0.01875rem;
+    }
+  }
+  &[type=raised] {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.05);
+  }
+  &[shape=round] {
+    text-align: center;
+    min-width: 30px;
+    max-width: 140px;
+    padding: 8px;
+    border-radius: 50%;
+  }
+  &[type=ghost] {
+    &__outline {
+      opacity: 1;
+      visibility: visible;
+    }
+    &:hover &__outline, &[keyboard] &__outline, &[pressed] &__outline {
+      opacity: 1;
+    }
+  }
+  &[shape=pill] {
+    border-radius: 9999px;
+  }
+  &[span=full] {
+    display: flex;
+  }
+}
+
+&__content, &__fill, &__layers, &__outline {
+  border-radius: inherit;
+  transition: inherit;
+}
+
+&__fill, &__layers, &__outline {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+&__layers {
+  color: #fff;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+[theme=secondary] &__layers {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+[theme=primary] &__layers {
+  color: #fff;
+}
+
+&__outline {
+  box-shadow: inset 0 0 0 1px currentColor;
+  transition-property: opacity, visibility;
+  opacity: 0;
+  visibility: hidden;
+}
+
+&__fill {
+  color: #fff;
+  background-color: currentColor;
+  transition-property: color, opacity, visibility;
+}
+
+[theme=secondary] &__fill {
+  color: #1e063c;
+}
+
+[theme=primary] &__fill {
+  color: #fff;
+}
+
+&[checked] &__fill {
+  color: #d6d6d6;
+}
+
+[theme=secondary] &[checked] &__fill {
+  color: #140028;
+}
+
+[theme=primary] &[checked] &__fill {
+  color: #d6d6d6;
+}
+
+& {
+  &:hover &__fill, &[keyboard] &__fill, &[selected] &__fill {
+    color: #d3ebf7;
+  }
+}
+
+[theme=secondary] & {
+  &:hover &__fill, &[keyboard] &__fill, &[selected] &__fill {
+    color: #3c1464;
+  }
+}
+
+[theme=primary] & {
+  &:hover &__fill, &[keyboard] &__fill, &[selected] &__fill {
+    color: #d3ebf7;
+  }
+}
+
+&[pressed] &__fill {
+  color: #bde2f2;
+}
+
+[theme=secondary] &[pressed] &__fill {
+  color: #140028;
+}
+
+[theme=primary] &[pressed] &__fill {
+  color: #bde2f2;
+}
+
+& {
+  &[type=flat] &__fill, &[type=ghost] &__fill, &[type=link] &__fill {
+    opacity: 0;
+    visibility: hidden;
+  }
+  &[type=flat] {
+    &:hover &__fill, &[keyboard] &__fill {
+      opacity: .2;
+      visibility: visible;
+    }
+  }
+  &[type=ghost] {
+    &:hover &__fill, &[keyboard] &__fill {
+      opacity: .2;
+      visibility: visible;
+    }
+  }
+  &[type=flat][checked] &__fill, &[type=ghost][checked] &__fill {
+    opacity: 1;
+    visibility: visible;
+  }
+  &[type=flat][pressed] &__fill {
+    opacity: .5;
+    visibility: visible;
+  }
+  &[type=ghost][pressed] &__fill {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+&__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  transition-property: color;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+}
+
+[theme=secondary] & &__content {
+  color: #140028;
+}
+
+[theme=primary] & &__content {
+  color: #fff;
+}
+
+& {
+  &[type=flat][checked] &__content, &[type=ghost][checked] &__content {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+[theme=secondary] & {
+  &[type=flat][checked] &__content, &[type=ghost][checked] &__content {
+    color: #fff;
+  }
+}
+
+[theme=primary] & {
+  &[type=flat][checked] &__content, &[type=ghost][checked] &__content {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+&[type=link][checked] &__content {
+  color: #d6d6d6;
+}
+
+[theme=secondary] &[type=link][checked] &__content {
+  color: #140028;
+}
+
+[theme=primary] &[type=link][checked] &__content {
+  color: #d6d6d6;
+}
+
+&[type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #d3ebf7;
+  }
+}
+
+[theme=secondary] &[type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #3c1464;
+  }
+}
+
+[theme=primary] &[type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #d3ebf7;
+  }
+}
+
+& {
+  &[type=flat][pressed] &__content, &[type=ghost][pressed] &__content {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+[theme=secondary] & {
+  &[type=flat][pressed] &__content, &[type=ghost][pressed] &__content {
+    color: #fff;
+  }
+}
+
+[theme=primary] & {
+  &[type=flat][pressed] &__content, &[type=ghost][pressed] &__content {
+    color: rgba(0, 0, 0, 0.87);
+  }
+}
+
+&[type=link][pressed] &__content {
+  color: #d6d6d6;
+}
+
+[theme=secondary] &[type=link][pressed] &__content {
+  color: #140028;
+}
+
+[theme=primary] &[type=link][pressed] &__content {
+  color: #d6d6d6;
+}
+
+&:not([type=ghost]):not([type=flat]):not([type=link]) &__content {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+[theme=secondary] &:not([type=ghost]):not([type=flat]):not([type=link]) &__content {
+  color: #fff;
+}
+
+[theme=primary] &:not([type=ghost]):not([type=flat]):not([type=link]) &__content {
+  color: rgba(0, 0, 0, 0.87);
+}
+
+&[theme] {
+  &:not([type=ghost]):not([type=flat]):not([type=link]) &__content, &[pressed] &__content {
+    color: #fff;
+  }
+}
+
+[theme=primary] &[theme] {
+  &:not([type=ghost]):not([type=flat]):not([type=link]) &__content, &[pressed] &__content {
+    color: #fff;
+  }
+}
+
+[theme=secondary] &[theme] {
+  &:not([type=ghost]):not([type=flat]):not([type=link]) &__content, &[pressed] &__content {
+    color: #fff;
+  }
+}
+
+&[theme=info] {
+  &__fill, &__layers {
+    color: #fb9a68;
+  }
+}
+
+[theme=primary] &[theme=info] {
+  &__fill, &__layers {
+    color: #fb9a68;
+  }
+}
+
+[theme=secondary] &[theme=info] {
+  &__fill, &__layers {
+    color: #fb9a68;
+  }
+}
+
+&[theme=info] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #fabd78;
+  }
+}
+
+[theme=primary] &[theme=info] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #fabd78;
+  }
+}
+
+[theme=secondary] &[theme=info] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #fabd78;
+  }
+}
+
+&[theme=info][pressed] &__fill, [theme=primary] &[theme=info][pressed] &__fill, [theme=secondary] &[theme=info][pressed] &__fill {
+  color: #f77957;
+}
+
+&[theme=info] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #fabd78;
+  }
+}
+
+[theme=secondary] &[theme=info] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #f77957;
+  }
+}
+
+[theme=primary] &[theme=info] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #fabd78;
+  }
+}
+
+&[theme=info][type=link] &__content, [theme=primary] &[theme=info][type=link] &__content, [theme=secondary] &[theme=info][type=link] &__content {
+  color: #fb9a68;
+}
+
+&[theme=info][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #fabd78;
+  }
+}
+
+[theme=primary] &[theme=info][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #fabd78;
+  }
+}
+
+[theme=secondary] &[theme=info][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #fabd78;
+  }
+}
+
+&[theme=info][type=link][pressed] &__content, [theme=primary] &[theme=info][type=link][pressed] &__content, [theme=secondary] &[theme=info][type=link][pressed] &__content {
+  color: #f77957;
+}
+
+&[theme=negative] {
+  &__fill, &__layers {
+    color: #dc2635;
+  }
+}
+
+[theme=primary] &[theme=negative] {
+  &__fill, &__layers {
+    color: #dc2635;
+  }
+}
+
+[theme=secondary] &[theme=negative] {
+  &__fill, &__layers {
+    color: #dc2635;
+  }
+}
+
+&[theme=negative] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #f54748;
+  }
+}
+
+[theme=primary] &[theme=negative] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #f54748;
+  }
+}
+
+[theme=secondary] &[theme=negative] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #f54748;
+  }
+}
+
+&[theme=negative][pressed] &__fill, [theme=primary] &[theme=negative][pressed] &__fill, [theme=secondary] &[theme=negative][pressed] &__fill {
+  color: #b62016;
+}
+
+&[theme=negative] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #f54748;
+  }
+}
+
+[theme=secondary] &[theme=negative] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #b62016;
+  }
+}
+
+[theme=primary] &[theme=negative] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #f54748;
+  }
+}
+
+&[theme=negative][type=link] &__content, [theme=primary] &[theme=negative][type=link] &__content, [theme=secondary] &[theme=negative][type=link] &__content {
+  color: #dc2635;
+}
+
+&[theme=negative][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #f54748;
+  }
+}
+
+[theme=primary] &[theme=negative][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #f54748;
+  }
+}
+
+[theme=secondary] &[theme=negative][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #f54748;
+  }
+}
+
+&[theme=negative][type=link][pressed] &__content, [theme=primary] &[theme=negative][type=link][pressed] &__content, [theme=secondary] &[theme=negative][type=link][pressed] &__content {
+  color: #b62016;
+}
+
+&[theme=positive] {
+  &__fill, &__layers {
+    color: #239dd5;
+  }
+}
+
+[theme=primary] &[theme=positive] {
+  &__fill, &__layers {
+    color: #239dd5;
+  }
+}
+
+[theme=secondary] &[theme=positive] {
+  &__fill, &__layers {
+    color: #239dd5;
+  }
+}
+
+&[theme=positive] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #30ceff;
+  }
+}
+
+[theme=primary] &[theme=positive] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #30ceff;
+  }
+}
+
+[theme=secondary] &[theme=positive] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #30ceff;
+  }
+}
+
+&[theme=positive][pressed] &__fill, [theme=primary] &[theme=positive][pressed] &__fill, [theme=secondary] &[theme=positive][pressed] &__fill {
+  color: #1975b6;
+}
+
+&[theme=positive] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #30ceff;
+  }
+}
+
+[theme=secondary] &[theme=positive] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #1975b6;
+  }
+}
+
+[theme=primary] &[theme=positive] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #30ceff;
+  }
+}
+
+&[theme=positive][type=link] &__content, [theme=primary] &[theme=positive][type=link] &__content, [theme=secondary] &[theme=positive][type=link] &__content {
+  color: #239dd5;
+}
+
+&[theme=positive][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #30ceff;
+  }
+}
+
+[theme=primary] &[theme=positive][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #30ceff;
+  }
+}
+
+[theme=secondary] &[theme=positive][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #30ceff;
+  }
+}
+
+&[theme=positive][type=link][pressed] &__content, [theme=primary] &[theme=positive][type=link][pressed] &__content, [theme=secondary] &[theme=positive][type=link][pressed] &__content {
+  color: #1975b6;
+}
+
+&[theme=redirect] {
+  &__fill, &__layers {
+    color: #2ca179;
+  }
+}
+
+[theme=primary] &[theme=redirect] {
+  &__fill, &__layers {
+    color: #2ca179;
+  }
+}
+
+[theme=secondary] &[theme=redirect] {
+  &__fill, &__layers {
+    color: #2ca179;
+  }
+}
+
+&[theme=redirect] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #2fd693;
+  }
+}
+
+[theme=primary] &[theme=redirect] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #2fd693;
+  }
+}
+
+[theme=secondary] &[theme=redirect] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #2fd693;
+  }
+}
+
+&[theme=redirect][pressed] &__fill, [theme=primary] &[theme=redirect][pressed] &__fill, [theme=secondary] &[theme=redirect][pressed] &__fill {
+  color: #217b60;
+}
+
+&[theme=redirect] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #2fd693;
+  }
+}
+
+[theme=secondary] &[theme=redirect] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #217b60;
+  }
+}
+
+[theme=primary] &[theme=redirect] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #2fd693;
+  }
+}
+
+&[theme=redirect][type=link] &__content, [theme=primary] &[theme=redirect][type=link] &__content, [theme=secondary] &[theme=redirect][type=link] &__content {
+  color: #2ca179;
+}
+
+&[theme=redirect][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #2fd693;
+  }
+}
+
+[theme=primary] &[theme=redirect][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #2fd693;
+  }
+}
+
+[theme=secondary] &[theme=redirect][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #2fd693;
+  }
+}
+
+&[theme=redirect][type=link][pressed] &__content, [theme=primary] &[theme=redirect][type=link][pressed] &__content, [theme=secondary] &[theme=redirect][type=link][pressed] &__content {
+  color: #217b60;
+}
+
+&[theme=search] &__layers, [theme=primary] &[theme=search] &__layers, [theme=secondary] &[theme=search] &__layers, &[theme=search] &__fill, [theme=primary] &[theme=search] &__fill, [theme=secondary] &[theme=search] &__fill {
+  color: #f0548d;
+}
+
+&[theme=search] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #ff73ab;
+  }
+}
+
+[theme=primary] &[theme=search] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #ff73ab;
+  }
+}
+
+[theme=secondary] &[theme=search] {
+  &:hover &__fill, &[keyboard] &__fill {
+    color: #ff73ab;
+  }
+}
+
+&[theme=search][pressed] &__fill, [theme=primary] &[theme=search][pressed] &__fill, [theme=secondary] &[theme=search][pressed] &__fill {
+  color: #ff618b;
+}
+
+&[theme=search] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #ff73ab;
+  }
+}
+
+[theme=secondary] &[theme=search] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #ff618b;
+  }
+}
+
+[theme=primary] &[theme=search] {
+  &[type=flat]:not([pressed]):not([checked]) &__content, &[type=ghost]:not([pressed]):not([checked]) &__content {
+    color: #ff73ab;
+  }
+}
+
+&[theme=search][type=link] &__content, [theme=primary] &[theme=search][type=link] &__content, [theme=secondary] &[theme=search][type=link] &__content {
+  color: #f0548d;
+}
+
+&[theme=search][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #ff73ab;
+  }
+}
+
+[theme=primary] &[theme=search][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #ff73ab;
+  }
+}
+
+[theme=secondary] &[theme=search][type=link] {
+  &:hover &__content, &[keyboard] &__content {
+    color: #ff73ab;
+  }
+}
+
+&[theme=search][type=link][pressed] &__content, [theme=primary] &[theme=search][type=link][pressed] &__content, [theme=secondary] &[theme=search][type=link][pressed] &__content {
+  color: #ff618b;
+}
