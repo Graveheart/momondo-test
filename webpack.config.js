@@ -15,7 +15,6 @@ module.exports = {
     compress: true,
     hot: true,
     open: true,
-    // openPage: 'bredbaand',
     historyApiFallback: true,
     disableHostCheck: true
   },
@@ -49,3 +48,43 @@ module.exports = {
     new WriteFileWebpackPlugin()
   ]
 };
+
+// const path = require('path'),
+//   webpack = require('webpack'),
+//   HtmlWebpackPlugin = require('html-webpack-plugin'),
+//   {CheckerPlugin} = require('awesome-typescript-loader');
+
+// module.exports = {
+//   mode: 'development',
+//   entry: [
+//     'react-hot-loader/patch', // activate HMR for React
+//     'webpack-dev-server/client?http://localhost:8080',// bundle the client for webpack-dev-server and connect to the provided endpoint
+//     'webpack/hot/only-dev-server', // bundle the client for hot reloading, only- means to only hot reload for successful updates
+//     './src/js/index.tsx' // the entry point of our app
+//   ],
+//   devServer: {
+//     hot: true, // enable HMR on the server
+//   },
+//   devtool: 'cheap-module-eval-source-map',
+//   output: {
+//     path: path.resolve(__dirname, 'dist'),
+//     filename: 'js/[name].bundle.js'
+//   },
+//   resolve: {
+//     extensions: ['.js', '.jsx', '.json', '.ts', '.tsx']
+//   },
+//   module: {
+//     rules: [
+//       {
+//         test: /\.(ts|tsx)$/,
+//         loader: 'ts-loader'
+//       },
+//       { enforce: "pre", test: /\.js$/, loader: "source-map-loader" }
+//     ]
+//   },
+//   plugins: [
+//     new CheckerPlugin(),
+//     new HtmlWebpackPlugin({ template: './index.html' }),
+//     new webpack.HotModuleReplacementPlugin()
+//   ]
+// }

@@ -21,7 +21,6 @@ const FlightSegment: React.SFC<FlightSegmentProps> = ({Duration, legsData}) => {
     const minutes = time.getMinutes();
     return hours + ':' + minutes;
   }
-
   let {Origin, Destination, Arrival, Departure, AirlineName} = legsData[0];
   if (legsData.length > 1) {
     Destination = legsData[legsData.length - 1].Destination;
@@ -51,6 +50,13 @@ const FlightSegment: React.SFC<FlightSegmentProps> = ({Duration, legsData}) => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="c-flights_ticket-summary-segment-location c-flights_ticket-summary-segment-location--destination">
+        <div className="c-flights_ticket-summary-segment-iata_time">
+        <div className="c-flights_ticket-summary-segment-iata">{Destination.Iata}</div>
+          <div className="c-flights_ticket-summary-segment-time">{formatTime(Arrival)}</div>
+        </div>
+        <div className="c-flights_ticket-summary-segment-place">{Destination.Name}</div>
       </div>
     </div>
   );

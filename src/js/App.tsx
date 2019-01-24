@@ -1,7 +1,7 @@
 import * as React from "react";
 import { v4 as uuidv4 } from 'uuid';
 import Offer from "./models/Offer";
-import Ticket from "./flight-ticket/Ticket";
+import Ticket from "./flight-ticket/Ticket.connect";
 
 export interface AppProps {
   getFlights: (uuid: string) => undefined;

@@ -1,19 +1,17 @@
-import { ActionType } from 'typesafe-actions';
 import { connect } from 'react-redux';
 
-import * as actions from "../actions";
-
 import { RootState } from "../reducer";
-
-type Action = ActionType<typeof actions>;
 
 import Ticket, {TicketProps} from "./Ticket";
 
 const mapStateToProps = (state: RootState, props: TicketProps) => {
-  const flights = state.flightSearch.flights;
+  const flights = state.flightSearch.flights.filter((el) => (el !== null));
+  const segments = state.flightSearch.segments.filter((el) => (el !== null));
+  const offerFlight = flights[props.FlightIndex];
 
   return {
-    flight: flights[props.FlightIndex]
+    offerFlight,
+    segments
   };
 }
 

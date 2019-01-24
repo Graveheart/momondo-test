@@ -11,7 +11,7 @@ import FlightSegment, {FlightSegmentProps} from "./FlightSegment";
 import Leg from './../models/Leg';
 
 const mapStateToProps = (state: RootState, props: FlightSegmentProps) => {
-  const legs = state.flightSearch.legs;
+  const legs = state.flightSearch.legs.filter((el) => (el !== null));
 
   const legsData: Array<Leg> = [];
   props.LegIndexes.forEach((legIndex) => {

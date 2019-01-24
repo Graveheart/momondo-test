@@ -2,12 +2,15 @@ import * as React from "react";
 import Offer from "../models/Offer";
 import Flight from "../models/Flight";
 import FlightSegment from "./FlightSegment.connect";
+import Segment from "../models/Segment";
 
 export interface TicketProps extends Offer {
-  flight?: Flight;
+  offerFlight?: Flight;
+  segments?: Array<Segment>;
 }
 
-const Ticket: React.SFC<TicketProps> = ({flight, Price, Deeplink}) => {
+const Ticket: React.SFC<TicketProps> = ({offerFlight, Price, Deeplink, segments}) => {
+  if (!offerFlight) { return null; }
   const formattedPrice = Price ? Price.toFixed(3) : 0;
 
   return (
@@ -19,6 +22,12 @@ const Ticket: React.SFC<TicketProps> = ({flight, Price, Deeplink}) => {
               <div className="c-flights_ticket-summary-header">
               </div>
               <div className="c-flights_ticket-summary-segments">
+                {offerFlight.SegmentIndexes.map(
+                  (segmentIndex, index) => {
+                    const segment: Segment = segments[segmentIndex];
+                    return <FlightSegment {...segment} key={index}/>
+                  }
+                )}
               </div>
               </div>
             <div className="c-flights_ticket-summary-deal">
