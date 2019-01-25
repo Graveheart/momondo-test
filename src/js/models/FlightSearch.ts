@@ -3,9 +3,9 @@ import Leg from './Leg';
 import Offer from './Offer';
 import Segment from './Segment';
 
-export default class FlightTicket {
+export default class FlightSearch {
   // flag indicating whether search is done or not
-  public Done?: boolean;
+  public Done: boolean;
   // the delta number of result, increases each time you call the service
   public ResultNumber?: number;
   // array of flights. A flight is the entire journey.

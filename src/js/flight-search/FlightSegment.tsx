@@ -1,7 +1,6 @@
 import * as React from "react";
 import Segment from "../models/Segment";
 import Leg from '../models/Leg';
-import * as moment from 'moment';
 
 export interface FlightSegmentProps extends Segment {
   legsData?: Array<Leg>;
@@ -18,7 +17,7 @@ const FlightSegment: React.SFC<FlightSegmentProps> = ({Duration, legsData}) => {
   const formatTime = (time: Date) => {
     time = new Date(time);
     const hours = time.getHours();
-    const minutes = time.getMinutes();
+    const minutes = time.getMinutes().toString().padStart(2, '0');
     return hours + ':' + minutes;
   }
   let {Origin, Destination, Arrival, Departure, AirlineName} = legsData[0];

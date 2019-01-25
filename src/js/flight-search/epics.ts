@@ -1,12 +1,11 @@
 import { ajax } from 'rxjs/ajax';
 import { from, of } from 'rxjs';
-import { map, concatMap, filter, catchError, retry, pluck, takeUntil } from 'rxjs/operators';
-import { Epic, ActionsObservable } from 'redux-observable';
+import { map, concatMap, filter, catchError, retry } from 'rxjs/operators';
+import { Epic } from 'redux-observable';
 import { ActionType, isActionOf } from 'typesafe-actions';
 
 import * as actions from '../actions';
 import { getApiUrl } from '../endpoints';
-import { FlightsState } from './reducer';
 import { RootState } from '../reducer';
 
 type Action = ActionType<typeof actions>;

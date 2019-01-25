@@ -4,6 +4,12 @@ import Flight from "../models/Flight";
 import FlightSegment from "./FlightSegment.connect";
 import Segment from "../models/Segment";
 
+declare module 'react' {
+  interface HTMLAttributes<T> {
+    readonly theme?: string;
+  }
+}
+
 export interface TicketProps extends Offer {
   offerFlight?: Flight;
   segments?: Array<Segment>;
@@ -16,7 +22,7 @@ const Ticket: React.SFC<TicketProps> = ({offerFlight, Price, Deeplink, segments}
   return (
     <div className="c-flights_ticket">
       <div className="c-flights_ticket-container">
-        <div className="c-flights_ticket-content">
+        <div className="c-flights_ticket-content" theme="secondary">
           <div className="c-flights_ticket-summary">
             <div className="c-flights_ticket-summary-content">
               <div className="c-flights_ticket-summary-header">
@@ -42,7 +48,7 @@ const Ticket: React.SFC<TicketProps> = ({offerFlight, Price, Deeplink, segments}
                       <div className="c-button-outline"></div>
                       <div className="c-button-fill"></div>
                   </div>
-                  <div className="c-button-content" onClick={() => { window.location.href = Deeplink;}}>
+                  <div className="c-button-content" onClick={() => { window.location.href = Deeplink;}}  theme="redirect">
                     Book
                   </div>
                 </div>
