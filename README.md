@@ -3,9 +3,9 @@
 The following project is a solution which primary focus is to fetch a result set from an API as JSON and visualize the data.
 
 ### Running the project
-First install all node modules with:
+First install all node modules with
 `npm ci`
-And serve the project with:
+And serve the project with
 `npm start`
 
 <h2 align="center">Created by</h2>
