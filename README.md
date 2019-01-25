@@ -4,9 +4,9 @@ The following project is a solution which primary focus is to fetch a result set
 
 ### Running the project
 First install all node modules with:
-npm ci
+`npm ci`
 And serve the project with:
-npm start
+`npm start`
 
 <h2 align="center">Created by</h2>
 
